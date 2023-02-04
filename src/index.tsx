@@ -1,12 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { applyMiddleware, createStore, Store } from 'redux';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import reducer from './store/reducer';
+import thunk from 'redux-thunk';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+const store : Store<ArticleState, ArticleAction> & {
+  dispatch: DispatchType
+} = createStore(reducer, applyMiddleware(thunk))
+
 root.render(
   <React.StrictMode>
     <App />
